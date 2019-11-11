@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SettingOptions from './components/SettingOptions';
 import './App.scss';
 
-const App = () => {
+const CreatePassword = () => {
   const [passwordText, setPassword] = useState('');
   const [passwordLen, setPasswordLen] = useState('16');
 
@@ -99,4 +99,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default CreatePassword;

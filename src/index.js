@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
+import { Route, HashRouter,  Switch } from 'react-router-dom';
+import CreatePassword from './CreatePassword';
+import Content from './Content';
+import BusinessCard from './BusinessCard';
 import * as serviceWorker from './serviceWorker';
+import './index.scss';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Home = () => {
+  return(
+    <HashRouter>
+      <Switch>
+        <Route exact path='/' component={CreatePassword} />
+        <Route path='/business-card' component={BusinessCard} />
+        <Route path='/content' component={Content} />
+      </Switch>
+    </HashRouter>
+  )
+};
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+ReactDOM.render(<Home />, document.getElementById('root'));
+
 serviceWorker.unregister();
