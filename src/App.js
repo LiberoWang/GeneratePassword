@@ -6,6 +6,14 @@ const App = () => {
   const [passwordText, setPassword] = useState('');
   const [passwordLen, setPasswordLen] = useState('16');
 
+  const clickCopy = () => {
+    const textArea = document.createElement('textarea');
+    document.body.appendChild(textArea);
+    textArea.value = passwordText;
+    textArea.select();
+    document.execCommand("copy");
+  };
+
   const getRandomUpper = () => {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
   };
@@ -41,7 +49,7 @@ const App = () => {
 
   const handleGenerate = ({ uppercase, lowercase, numbers, symbols }) => {
     let generatedPassword = '';
-    const typesCount = uppercase + lowercase + numbers + symbols;
+    const typesCount = uppercase + lowercase + numbers + symbols; // 判断所有的action是否都是true. true+true+true+true = 1+1+1+1
     const typesArr = [{ uppercase }, { lowercase }, { numbers }, { symbols }].filter(item => Object.values(item)[0]);
     if (typesCount === 0) {
       setPassword('');
@@ -63,8 +71,10 @@ const App = () => {
         <div className="header"> Generate Password </div>
         <div className="password-container">
           { passwordText ?
-            <span>{ passwordText }</span> :
-            <span> CLICK GENERATE </span>
+            <div onClick={clickCopy}>
+              { passwordText }
+            </div> :
+            <div> CLICK GENERATE </div>
           }
         </div>
         <div className="password-length">
